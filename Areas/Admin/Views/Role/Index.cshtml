@@ -1,0 +1,175 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model ThaiYVien.Models.ViewModel.RoleViewModel
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thêm mới quyền</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-9">
+                        <form method="post" asp-action="Create" asp-controller="Role">
+
+                            <div asp-validation-summary="ModelOnly" class="text-danger">
+                            </div>
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input asp-for="Name" type="text" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger">
+
+                                </span>
+
+                            </div>
+
+
+
+
+                            <div class="form-group m-2">
+                                <button class="btn btn-primary" type="submit">
+                                    Thêm mới
+                                </button>
+                            </div>
+                        </form>
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+               
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@* Modal cập nhật *@
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cập nhật  quyền</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-9">
+                        <form method="post" asp-action="Update" asp-controller="Role">
+
+                            <div asp-validation-summary="ModelOnly" class="text-danger">
+                            </div>
+                            <input type="hidden" name="Id" />
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input asp-for="Name" type="text" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger">
+
+                                </span>
+
+                            </div>
+
+
+
+
+                            <div class="form-group m-2">
+                                <button class="btn btn-primary" type="submit">
+                                   cập nhật
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@{
+    ViewData["Title"] = "Role Listed";
+
+}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+              
+                <div class="card-header">
+                   
+                    <button class="btn btn-primary" asp-action="Create" asp-controller="Role" data-bs-toggle="modal" data-bs-target="#exampleModal">Thêm mới quyền</button>
+                   
+
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Tên quyền</th>
+
+                                <th scope="col">Role Management</th>
+
+                            </tr>
+                        </thead>
+                        <tbody class="table-light">
+                            @foreach (var item in Model.Roles)
+                            {
+                                <tr>
+                                    <th scope="row">@item.Id</th>
+                                    <td>@item.Name</td>
+                                    <td>
+                                        <a href="javascript:void(0);"
+                                           class="btn btn-warning btn-edit"
+                                           data-id="@item.Id"
+                                           data-name="@item.Name">
+                                            Edit
+                                        </a>
+
+                                        <a asp-action="Delete" asp-controller="Role" asp-route-Id="@item.Id" class="btn btn-danger confirmDeletion">Delete </a>
+                                    </td>
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $(document).ready(function () {
+            $('.btn-edit').click(function () {
+                var roleId = $(this).data('id');
+                var roleName = $(this).data('name');
+
+                // Gán dữ liệu vào modal
+                $('#exampleModal1 input[name="Id"]').val(roleId);
+                $('#exampleModal1 input[name="Name"]').val(roleName);
+
+                // Hiển thị modal
+                $('#exampleModal1').modal('show');
+            });
+        });
+    </script>
+
+}

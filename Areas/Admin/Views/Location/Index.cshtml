@@ -1,0 +1,79 @@
+﻿@model IEnumerable<LocationModel>
+
+	﻿
+
+
+<div class="page-content">
+	<!--breadcrumb-->
+	<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+		<div class="breadcrumb-title pe-3">Thái Y Viện</div>
+		<div class="ps-3">
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb mb-0 p-0">
+					<li class="breadcrumb-item">
+						<a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+					</li>
+					<li class="breadcrumb-item active" aria-current="page">Quản lý dịch vụ trị liệu</li>
+				</ol>
+			</nav>
+		</div>
+
+	</div>
+	<!--end breadcrumb-->
+
+	<div class="card">
+		<div class="card-body">
+			<div class="d-lg-flex align-items-center mb-4 gap-3">
+				<div class="position-relative">
+					<input type="text" class="form-control ps-5 radius-30" placeholder="Search Order"> <span class="position-absolute top-50 product-show translate-middle-y"><i class="bx bx-search"></i></span>
+				</div>
+				<div class="ms-auto"><a asp-action="Create" asp-controller="Location" class="btn btn-primary radius-30 mt-2 mt-lg-0"><i class="bx bxs-plus-square"></i>Thêm dịch vụ mới</a></div>
+			</div>
+			<div class="table-responsive">
+				<table class="table mb-0">
+					<thead class="table-light">
+						<tr>
+							<th>#</th>
+							<th>Tên trung tâm trị liệu</th>
+							<th>Địa chỉ</th>
+							<th>Hình ảnh</th>
+							<th>Hành động</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var item in Model)
+						{
+							<tr>
+								<td>
+									<div class="d-flex align-items-center">
+										<div>
+											<input class="form-check-input me-3" type="checkbox" value="" aria-label="...">
+										</div>
+										<div class="ms-2">
+											<h6 class="mb-0 font-14">#@item.Id</h6>
+
+										</div>
+									</div>
+								</td>
+								<td>@item.Name</td>
+
+								<td>@item.Address</td>
+								
+								<td><img src="/image/location/@item.ImageUrl" style="height:50px;" /></td>
+								<td>
+									<div class="d-flex order-actions">
+										<a asp-action="Edit" asp-controller="Location" asp-route-id="@item.Id" class=""><i class='bx bxs-edit'></i></a>
+										<a asp-action="Delete" asp-controller="Location" asp-route-id="@item.Id" class="ms-3"><i class='bx bxs-trash'></i></a>
+									</div>
+								</td>
+							</tr>
+						}
+
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+

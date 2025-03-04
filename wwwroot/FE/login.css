@@ -1,0 +1,95 @@
+﻿body {
+    background-color: #fff;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-box {
+    background: #58c6e7;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 500px;
+}
+
+    .login-box img {
+        width: 120px;
+        margin-bottom: 15px;
+    }
+
+.form-control {
+    border-radius: 5px;
+}
+
+.password-container {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.btn-login {
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+}
+
+.btn-google {
+    background-color: #db4437;
+    color: white;
+    border-radius: 5px;
+}
+
+.btn-facebook {
+    background-color: #1877f2;
+    color: white;
+    border-radius: 5px;
+}
+
+.social-login button {
+    width: 100%;
+    margin: 5px 0;
+}
+
+.homepage-links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+    .homepage-links a {
+        width: 48%;
+        padding: 10px;
+        border-radius: 5px;
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+    }
+
+.btn-youtube {
+    background-color: #ff0000;
+}
+
+.btn-facebook-home {
+    background-color: #1877f2;
+}
+
+@media (max-width: 576px) {
+    .login-box {
+        width: 90%;
+    }
+}
+
+</style >

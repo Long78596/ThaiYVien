@@ -1,0 +1,62 @@
+.my-book-grid-wrapper .book-store-title {
+  height: fit-content;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+.my-book-grid-wrapper .row {
+  background-image: url(../img/tu_sach.jpg);
+  background-repeat: repeat-y;
+  background-size: contain;
+}
+.my-book-grid-wrapper .post-item {
+  padding-bottom: 7px;
+}
+.my-book-grid-wrapper .col > .col-inner {
+  background: none !important;
+  padding-top: 25px;
+}
+.my-book-grid-wrapper .col > .col-inner .box {
+  background: none !important;
+}
+.my-book-grid-wrapper .col > .col-inner .box .box-text {
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  min-height: 2em;
+}
+.my-book-grid-wrapper .col > .col-inner .box .box-text h5 {
+  color: #ffffff !important;
+  font-size: 1em;
+  line-height: 1em;
+}
+.my-book-grid-wrapper .col > .col-inner .box .box-image img {
+  object-fit: contain !important;
+}
+/* For tablet */
+@media only screen and (min-width: 500px) and (max-width: 1200px) {
+  .my-book-grid-wrapper .book-store-title {
+    margin-bottom: -2px !important;
+  }
+  .my-book-grid-wrapper .row {
+    background-image: url(../img/tu_sach_tab.jpg);
+  }
+  .my-book-grid-wrapper .col > .col-inner {
+    padding-top: 35px;
+  }
+}
+/* For Mobile */
+@media only screen and (max-width: 512px) {
+  .my-book-grid-wrapper .book-store-title {
+    margin-bottom: -5px !important;
+  }
+  .my-book-grid-wrapper .row {
+    background-image: url(../img/tu_sach_mb.jpg);
+  }
+  .my-book-grid-wrapper .post-item {
+    padding-bottom: 0;
+  }
+  .my-book-grid-wrapper .col > .col-inner {
+    padding-top: 21px;
+  }
+}

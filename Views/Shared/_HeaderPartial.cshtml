@@ -1,0 +1,514 @@
+﻿<header id="header" class="header ">
+    <div class="header-wrapper">
+        <div id="top-bar" class="header-top hide-for-sticky nav-dark show-for-medium">
+            <div class="flex-row container">
+                <div class="flex-col hide-for-medium flex-left">
+                    <ul class="nav nav-left medium-nav-center nav-small  nav-divided">
+                    </ul>
+                </div>
+
+                <div class="flex-col hide-for-medium flex-center">
+                    <ul class="nav nav-center nav-small  nav-divided">
+                    </ul>
+                </div>
+
+                <div class="flex-col hide-for-medium flex-right">
+                    <ul class="nav top-bar-nav nav-right nav-small  nav-divided">
+                    </ul>
+                </div>
+
+                <div class="flex-col show-for-medium flex-grow">
+                    <ul class="nav nav-center nav-small mobile-nav  nav-divided">
+                        <li class="html custom html_topbar_right">
+                            <div id="panel-782098403" class="panel">
+                                <div class="panel-inner">
+
+
+
+                                    <a class="plain" href="tel:090 117 1111">
+                                        <div class="icon-box featured-box contact-icon contact-phone icon-box-left text-left">
+                                            <div class="icon-box-img" style="width: 32px">
+                                                <div class="icon">
+                                                    <div class="icon-inner">
+                                                        <img width="32" height="32"
+                                                             src="~/FE/assets/img/changelogo-removebg-preview.png"
+                                                             class="attachment-medium size-medium" alt=""
+                                                             loading="lazy" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="icon-box-text last-reset">
+                                                <h5 class="uppercase">Hotline</h5>
+                                                <h6>0905.985.168</h6>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                </div>
+                            </div>
+
+                        </li>
+                        <li class="header-divider"></li>
+                        <li class="html custom html_topbar_left">
+                            <a class="dat-lich-link"
+                              asp-action="Index" asp-controller="Appointment">
+                                <span class="icon">
+                                    <img src="https://nhatlieuyvien.b-cdn.net/wp-content/themes/flatsome-child/img/visualization_edit.png"
+                                         style="width: 11px; height: 11px;">
+                                </span><span class="text">
+                                    Đặt lịch
+                                    khám bệnh
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <div id="masthead" class="header-main hide-for-sticky">
+            <div class="header-inner flex-row container logo-left medium-logo-center" role="navigation">
+
+                <!-- Logo -->
+                <div id="logo" class="flex-col logo">
+
+                    <!-- Header logo -->
+                    <a asp-action=" Index" asp-controller="Product" title="Thái Y Viện - Nơi khởi nguồn sức khỏe, thịnh vượng"
+                       rel="home">
+                        <img width="852" height="800" src="~/FE/assets/img/changelogo-removebg-preview.png"
+                             class="header_logo header-logo" alt="Thái Y Viện" /><img width="852" height="800"
+                                                                                      src="~/FE/assets/img/changelogo-removebg-preview.png" class="header-logo-dark"
+                                                                                      alt="Thái Y Viện" />
+                    </a>
+                </div>
+
+                <!-- Mobile Left Elements -->
+
+               
+                <div class="flex-col show-for-medium flex-left">
+                    <ul class="mobile-nav nav nav-left ">
+                        <li class="nav-icon has-icon">
+                            <a href="#" data-open="#main-menu" data-pos="left" data-bg="main-menu-overlay"
+                               data-color="" class="is-small" aria-label="Menu" aria-controls="main-menu"
+                               aria-expanded="false">
+
+                                <i class="icon-menu"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Left Elements -->
+                <div class="flex-col hide-for-medium flex-left
+                    flex-grow">
+                    <ul class="header-nav header-nav-main nav nav-left  nav-spacing-xlarge nav-uppercase">
+                    </ul>
+                </div>
+
+                <!-- Right Elements -->
+                <div class="flex-col hide-for-medium flex-right">
+                    <ul class="header-nav header-nav-main nav nav-right  nav-spacing-xlarge nav-uppercase">
+                        <li class="html custom html_topbar_right">
+                            <div id="panel-1874630469" class="panel">
+                                <div class="panel-inner">
+
+
+
+                                    <a class="plain" href="tel:0968 824 386">
+                                        <div class="icon-box featured-box contact-icon contact-phone icon-box-left text-left">
+                                            <div class="icon-box-img" style="width: 32px">
+                                                <div class="icon">
+                                                    <div class="icon-inner">
+                                                        <img width="32" height="32"
+                                                             src="~/FE/assets/img/icon-phone-image.png"
+                                                             class="attachment-medium size-medium" alt=""
+                                                             loading="lazy" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="icon-box-text last-reset">
+                                                <h5 class="uppercase">Hotline</h5>
+                                                <h6>0905.985.168</h6>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                </div>
+                            </div>
+
+                        </li>
+                        <li class="header-divider"></li>
+                        <li class="account-item has-icon
+            ">
+                            <div class="header-button">
+                                 @if (User.Identity?.IsAuthenticated ?? false)
+                        {
+                                <a  asp-action="Logout" asp-controller="Account"
+                                  >
+                                        <h2>@User.Identity.Name</h2>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a asp-action="Login" asp-controller="Account"
+                                       class="nav-top-link nav-top-not-logged-in icon primary button circle is-small">
+                                        <i class="icon-user"></i>
+                                    </a>
+                                }
+                                
+
+                            </div>
+
+                        </li>
+                        <li class="cart-item has-icon has-dropdown">
+                            <div class="header-button">
+                                <a href="SanPham.html"
+                                   class="header-cart-link icon primary button circle is-small"
+                                   title="Giỏ hàng">
+
+
+                                    <i class="icon-shopping-basket" data-icon-label="0">
+                                    </i>
+                                </a>
+                            </div>
+                            <ul class="nav-dropdown nav-dropdown-default">
+                                <li class="html widget_shopping_cart">
+                                    <div class="widget_shopping_cart_content">
+
+
+                                        <div class="ux-mini-cart-empty flex flex-row-col text-center pt pb">
+                                            <div class="ux-mini-cart-empty-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 19"
+                                                     style="opacity: .1;height:80px;">
+                                                    <path d="M8.5 0C6.7 0 5.3 1.2 5.3 2.7v2H2.1c-.3 0-.6.3-.7.7L0 18.2c0 .4.2.8.6.8h15.7c.4 0 .7-.3.7-.7v-.1L15.6 5.4c0-.3-.3-.6-.7-.6h-3.2v-2c0-1.6-1.4-2.8-3.2-2.8zM6.7 2.7c0-.8.8-1.4 1.8-1.4s1.8.6 1.8 1.4v2H6.7v-2zm7.5 3.4 1.3 11.5h-14L2.8 6.1h2.5v1.4c0 .4.3.7.7.7.4 0 .7-.3.7-.7V6.1h3.5v1.4c0 .4.3.7.7.7s.7-.3.7-.7V6.1h2.6z"
+                                                          fill-rule="evenodd" clip-rule="evenodd" fill="#303031">
+                                                    </path>
+                                                </svg>
+                                            </div>
+                                            <p class="woocommerce-mini-cart__empty-message empty">
+                                                Chưa có sản
+                                                phẩm trong giỏ hàng.
+                                            </p>
+                                            <p class="return-to-shop">
+                                                <a class="button primary wc-backward"
+                                                   href="http://thaiyvien.log.vn/">
+                                                    Quay trở lại cửa hàng
+                                                </a>
+                                            </p>
+                                        </div>
+
+
+                                    </div>
+                                </li>
+                            </ul>
+
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Mobile Right Elements -->
+                <div class="flex-col show-for-medium flex-right">
+                    <ul class="mobile-nav nav nav-right ">
+                        <li class="cart-item has-icon">
+
+                            <div class="header-button">
+                                <a href="SanPham.html"
+                                   class="header-cart-link icon primary button circle is-small off-canvas-toggle nav-top-link"
+                                   title="Giỏ hàng" data-open="#cart-popup" data-class="off-canvas-cart"
+                                   data-pos="right">
+
+                                    <i class="icon-shopping-basket" data-icon-label="0">
+                                    </i>
+                                </a>
+                            </div>
+
+                            <!-- Cart Sidebar Popup -->
+                            <div id="cart-popup" class="mfp-hide">
+                                <div class="cart-popup-inner inner-padding cart-popup-inner--sticky">
+                                    <div class=" cart-popup-title text-center">
+                                        <span class="heading-font uppercase">Giỏ hàng</span>
+                                        <div class="is-divider"></div>
+                                    </div>
+                                    <div class="widget woocommerce widget_shopping_cart">
+                                        <div class="widget_shopping_cart_content"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="container">
+                <div class="top-divider full-width"></div>
+            </div>
+        </div>
+        <div id="wide-nav" class="header-bottom wide-nav hide-for-sticky nav-dark hide-for-medium">
+            <div class="flex-row container">
+
+                <div class="flex-col hide-for-medium flex-left">
+                    <div class="container">
+                        <ul class="nav header-nav header-bottom-nav nav-left  nav-uppercase">
+                            <div id="mega-menu-wrap-primary" class="mega-menu-wrap">
+                                <div class="mega-menu-toggle">
+                                    <div class="mega-toggle-blocks-left"></div>
+                                    <div class="mega-toggle-blocks-center"></div>
+                                    <div class="mega-toggle-blocks-right">
+                                        <div class='mega-toggle-block mega-menu-toggle-animated-block mega-toggle-block-0'
+                                             id='mega-toggle-block-0'>
+                                            <button aria-label="Toggle Menu"
+                                                    class="mega-toggle-animated mega-toggle-animated-slider"
+                                                    type="button" aria-expanded="false">
+                                                <span class="mega-toggle-animated-box">
+                                                    <span class="mega-toggle-animated-inner"></span>
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container">
+                                    <ul id="mega-menu-primary"
+                                        class="mega-menu max-mega-menu mega-menu-horizontal mega-no-js"
+                                        data-event="hover_intent" data-effect="slide" data-effect-speed="200"
+                                        data-effect-mobile="disabled" data-effect-speed-mobile="0"
+                                        data-mobile-force-width="false" data-second-click="go"
+                                        data-document-click="collapse" data-vertical-behaviour="standard"
+                                        data-breakpoint="768" data-unbind="true"
+                                        data-mobile-state="collapse_all" data-hover-intent-timeout="300"
+                                        data-hover-intent-interval="100">
+
+                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-931'
+                                            id='mega-menu-item-931'>
+                                            <a class="mega-menu-link"
+                                               href="http://thaiyvien.log.vn/" tabindex="0">
+                                                GIỚI
+                                                THIỆU
+                                            </a>
+                                        </li>
+                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout mega-menu-item-919'
+                                            id='mega-menu-item-919'>
+                                            <a class="mega-menu-link"
+                                               asp-action="index" asp-controller="Product" aria-haspopup="true" aria-expanded="false"
+                                               tabindex="0">
+                                                SẢN
+                                                PHẨM<span class="mega-indicator"></span>
+                                            </a>
+                                            <ul class="mega-sub-menu">
+                                                <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-949'
+                                                    id='mega-menu-item-949'>
+                                                    <a class="mega-menu-link"
+                                                       asp-action="index" asp-controller="Product">
+                                                        Thực
+                                                        Phẩm Nâng Cao Sức Khỏe
+                                                    </a>
+                                                </li>
+                                                <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-948'
+                                                    id='mega-menu-item-948'>
+                                                    <a class="mega-menu-link"
+                                                       asp-action="index" asp-controller="Product">
+                                                        Các
+                                                        Dòng Rượu Hoàng Cung
+                                                    </a>
+                                                </li>
+
+                                            </ul>
+                                        </li>
+                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout mega-menu-item-919'
+                                            id='mega-menu-item-919'>
+                                            <a class="mega-menu-link" asp-action="index" asp-controller="Service"
+                                               aria-haspopup="true" aria-expanded="false" tabindex="0">
+                                                DỊCH
+                                                VỤ<span class="mega-indicator"></span>
+                                            </a>
+                                            <ul class="mega-sub-menu">
+                                                <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-949'
+                                                    id='mega-menu-item-949'>
+                                                    <a class="mega-menu-link"
+                                                       asp-action="index" asp-controller="Service">
+                                                        Trị
+                                                        Liệu Cơ Bản
+                                                    </a>
+                                                </li>
+                                                <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-948'
+                                                    id='mega-menu-item-948'>
+                                                    <a class="mega-menu-link"
+                                                       asp-action="index" asp-controller="Service">
+                                                        Trị
+                                                        Liệu Nâng Cao
+                                                    </a>
+                                                </li>
+                                                <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-948'
+                                                    id='mega-menu-item-948'>
+                                                    <a class="mega-menu-link"
+                                                       asp-action="index" asp-controller="Service">
+                                                        Trị
+                                                        Liệu Chuyên Sâu
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class='mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-category mega-current-post-ancestor mega-current-menu-parent mega-current-post-parent mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout mega-menu-item-942'
+                                            id='mega-menu-item-942'>
+                                            <a class="mega-menu-link" href="HopTac.html"
+                                               aria-haspopup="true" aria-expanded="false" tabindex="0">
+                                                HỢP TÁC
+                                                <span class="mega-indicator"></span>
+                                            </a>
+                                            <ul class="mega-sub-menu">
+                                                <li class='mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-category mega-current-post-ancestor mega-current-menu-parent mega-current-post-parent mega-menu-item-945'
+                                                    id='mega-menu-item-945'>
+                                                    <a class="mega-menu-link"
+                                                       asp-action="index" asp-controller="Partnership">
+                                                        Các
+                                                        Hình Thức Đăng Ký Hợp
+                                                        Tác
+                                                    </a>
+                                                </li>
+
+
+                                            </ul>
+                                        </li>
+
+                                        <li class='mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-product_cat mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout mega-menu-item-957'
+                                            id='mega-menu-item-957'>
+                                            <a class="mega-menu-link" asp-action="index" asp-controller="Train"
+                                               aria-haspopup="true" aria-expanded="false" tabindex="0">
+                                                ĐÀO
+                                                TẠO<span class="mega-indicator"></span>
+                                            </a>
+                                            <ul class="mega-sub-menu">
+                                                <li class='mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-product_cat mega-menu-item-958'
+                                                    id='mega-menu-item-958'>
+                                                    <a class="mega-menu-link"
+                                                       asp-action="index" asp-controller="Train">
+                                                        Giới
+                                                        Thiệu Chương Trình Đào Tạo
+                                                    </a>
+                                                </li>
+                                                <li class='mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-product_cat mega-menu-item-959'
+                                                    id='mega-menu-item-959'>
+                                                    <a class="mega-menu-link"
+                                                       asp-action="index" asp-controller="Train">
+                                                        Phương
+                                                        Pháp Đào Tạo Hiện Đại
+                                                    </a>
+                                                </li>
+                                                <li class='mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-product_cat mega-menu-item-6112'
+                                                    id='mega-menu-item-6112'>
+                                                    <a class="mega-menu-link"
+                                                       asp-action="index" asp-controller="Train">
+                                                        Lợi
+                                                        Ích Khi Tham Gia Khóa Học
+                                                    </a>
+                                                </li>
+
+                                            </ul>
+                                        </li>
+                                        <li class='mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-product_cat mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout mega-menu-item-957'
+                                            id='mega-menu-item-957'>
+                                            <a class="mega-menu-link" asp-action="index" asp-controller="News"
+                                               aria-haspopup="true" aria-expanded="false" tabindex="0">
+                                                TIN
+                                                TỨC<span class="mega-indicator"></span>
+                                            </a>
+                                            <ul class="mega-sub-menu">
+                                                <li class='mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-product_cat mega-menu-item-958'
+                                                    id='mega-menu-item-958'>
+                                                    <a class="mega-menu-link"
+                                                       asp-action="index" asp-controller="News">
+                                                        Sự
+                                                        Kiện
+                                                    </a>
+                                                </li>
+                                                <li class='mega-menu-item mega-menu-item-type-taxonomy mega-menu-item-object-product_cat mega-menu-item-959'
+                                                    id='mega-menu-item-959'>
+                                                    <a class="mega-menu-link"
+                                                       asp-action="DetailNews" asp-controller="News">Báo chí mới nhất</a>
+                                                </li>
+
+
+                                            </ul>
+                                        </li>
+
+
+
+                                        <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-align-bottom-left mega-menu-flyout mega-menu-item-931'
+                                            id='mega-menu-item-931'>
+                                            <a asp-action="Index" asp-controller="Contact" class="mega-menu-link" 
+                                               tabindex="0">LIÊN HỆ</a>
+
+
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+
+
+                <div class="flex-col hide-for-medium flex-right flex-grow">
+                    <ul class="nav header-nav header-bottom-nav nav-right  nav-uppercase">
+                        <li class="header-search header-search-lightbox has-icon">
+                            <a  aria-label="Tìm kiếm" data-open="#search-lightbox"
+                               data-focus="input.search-field" class="is-small">
+                                <i class="icon-search" style="font-size:16px;"></i>
+                            </a>
+
+                            <div id="search-lightbox" class="mfp-hide dark text-center">
+                                <div class="searchform-wrapper ux-search-box relative form-flat is-large">
+                                    <form role="search" method="get" class="searchform"
+                                          action="http:thaiyvien.log.vn">
+                                        <div class="flex-row relative">
+                                            <div class="flex-col flex-grow">
+                                                <label class="screen-reader-text"
+                                                       for="woocommerce-product-search-field-0">Tìm kiếm:</label>
+                                                <input type="search" id="woocommerce-product-search-field-0"
+                                                       class="search-field mb-0"
+                                                       placeholder="Tìm kiếm | Nhập từ khóa" value="" name="s" />
+                                                <input type="hidden" name="post_type" value="product" />
+                                            </div>
+                                            <div class="flex-col">
+                                                <button type="submit" value="Tìm kiếm"
+                                                        class="ux-search-submit submit-button secondary button  icon mb-0"
+                                                        aria-label="Submit">
+                                                    <i class="icon-search"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="live-search-results text-left z-top"></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="html custom html_topbar_left">
+                            <a class="dat-lich-link" asp-action="Index" asp-controller="Appointment">
+                                <span class="icon">
+                                    <img src="~/FE/assets/img/visualization_edit.png"
+                                         style="width: 11px; height: 11px;">
+                                </span><span class="text">
+                                    Đặt lịch
+                                    trị
+                                    liệu
+                                </span>
+                            </a>
+                        </li>
+
+
+
+
+                    </ul>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="header-bg-container fill">
+            <div class="header-bg-image fill"></div>
+            <div class="header-bg-color fill"></div>
+        </div>
+    </div>
+</header>

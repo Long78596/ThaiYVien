@@ -1,0 +1,9 @@
+# Chuyển hướng tất cả yêu cầu vào thư mục public
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /public/$1 [L,QSA]
+
+# Đặt thư mục gốc thành public
+RewriteCond %{REQUEST_URI} ^/$
+RewriteRule ^$ /public/ [L]

@@ -1,0 +1,412 @@
+﻿
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ 
+    <style>
+
+
+        .container1 {
+            background: #0089d1;
+            max-width: 80%;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .step {
+            display: none;
+        }
+
+            .step.active {
+                display: block;
+            }
+
+        .list-group-item {
+            cursor: pointer;
+        }
+
+            .list-group-item.active {
+                background-color: #0089d1;
+                color: white;
+            }
+
+            .list-group-item.completed {
+                background-color: #28a745;
+                color: white;
+            }
+
+        .date-item,
+        .hour {
+            display: inline-block;
+            margin: 5px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+            .date-item.active,
+            .hour.active {
+                background-color: #0089d1;
+                color: white;
+            }
+
+            .hour.disabled {
+                background-color: #ddd;
+                cursor: not-allowed;
+            }
+    </style>
+    <div class="container1">
+        <h2 class="text-center">Đặt Lịch Hẹn</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <ul class="list-group mb-3" id="progress-bar">
+                    <li class="list-group-item step-progress" data-step="1">1: Chọn địa điểm</li>
+                    <li class="list-group-item step-progress" data-step="2">2: Chọn dịch vụ</li>
+                    <li class="list-group-item step-progress" data-step="3">3: Chọn nhân viên</li>
+                    <li class="list-group-item step-progress" data-step="4">4: Chọn ngày & giờ</li>
+                    <li class="list-group-item step-progress" data-step="5">5: Nhập thông tin và xác nhận</li>
+                </ul>
+            </div>
+            <div class="col-md-8">
+                <div id="booking-steps">
+                    <div class="step active" id="step-1">
+                        <h4>Chọn địa điểm</h4>
+                        <hr>
+                        <div class="list-group">
+                           
+                          
+                          
+                            @foreach (var location in ViewBag.Locations)
+                            {
+                            <div class="list-group-item text-center location-item" data-value="@location.Id">
+                                <input type="hidden" id="selectedLocationId" name="LocationId">
+                                <img src="~/image/location/@location.ImageUrl" class="rounded-circle text-center" style="height:120px;" alt="">
+                                <b>@location.Name</b>
+                                <p class="text-center"><b>@location.Address</b></p>
+                            </div>
+
+                            }
+                            
+
+
+                        </div>
+                        <button class="btn btn-primary btn-next mt-3" disabled>Tiếp theo</button>
+                    </div>
+
+                    <div class="step" id="step-2">
+                        <h4>Chọn dịch vụ</h4>
+                        <div class="list-group">
+                            <h5 class="text-primary">Trị liệu cơ bản</h5>
+                            @if (ViewBag.Services1 != null && ViewBag.Services1.Count > 0)
+                        {
+
+                        @foreach (var service1 in ViewBag.Services1)
+                            {
+                                <div class="list-group-item" data-value="@service1.ID">
+                                    <input type="hidden" id="selectedServiceId" name="serviceId">
+
+                                    <img src="~/image/service/@service1.ImageUrl" class="rounded-circle" style="height:75px;" alt="">
+                                    <b>@service1.Title</b>  <span id="amount">@service1.Price VNĐ</span>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <div class="list-group-item123">
+                                <p><b>Dịch vụ đang được cập nhật</b></p>
+                            </div>
+                        }
+
+                        
+
+                            <h5 class="text-primary mt-3">Trị liệu nâng cao</h5>
+                        @if (ViewBag.Services2 != null && ViewBag.Services2.Count > 0)
+                        {
+                        @foreach (var service2 in ViewBag.Services2)
+                        {
+                                <input type="hidden" id="selectedServiceId" name="serviceId">
+
+                                <div class="list-group-item" data-value="@service2.ID"><img src="~/image/service/@service2.ImageUrl" class="rounded-circle" style="height:75px;" alt="">
+                                    <b>@service2.Title</b>   <span id="amount">@service2.Price VNĐ</span>
+                                </div>
+                            }
+                        }
+
+                        else
+                        {
+                            <div class="list-group-item123">
+                                <p><b>Dịch vụ đang được cập nhật</b></p>
+                            </div>
+                           
+                            
+                        }
+
+                            <h5 class="text-primary mt-3">Trị liệu chuyên sâu</h5>
+                        @if (ViewBag.Services3 != null && ViewBag.Services3.Count > 0)
+                        {
+                            @foreach (var service3 in ViewBag.Services3)
+                            {
+                                <input type="hidden" id="selectedServiceId" name="serviceId">
+
+                                <div class="list-group-item" data-value=" @service3.ID">
+                                    <img src="~/image/service/@service3.ImageUrl" class="rounded-circle" style="height:75px;" alt="">
+                                    <b>@service3.Title</b> <span id="amount">@service3.Price VNĐ</span>
+
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <div class="list-group-item123">
+                                <p><b>Dịch vụ đang được cập nhật</b></p>
+                            </div>
+                        }
+
+
+                        </div>
+                        <button class="btn btn-secondary btn-prev mt-3">Quay lại</button>
+                        <button class="btn btn-primary btn-next mt-3" disabled>Tiếp theo</button>
+                    </div>
+                    <div class="step" id="step-3">
+                        <h4>Chọn nhân viên</h4>
+                        <div class="list-group">
+                           
+                        @foreach (var employee in ViewBag.Employees)
+                        {
+                            <div class="list-group-item" data-value="@employee.Id">@employee.FullName</div>
+                        }
+                        </div>
+                        <button class="btn btn-secondary btn-prev mt-3">Quay lại</button>
+                        <button class="btn btn-primary btn-next mt-3" disabled>Tiếp theo</button>
+                    </div>
+                    <div class="step" id="step-4">
+                        <h4>Chọn ngày</h4>
+                    <div class="calendar list-group-item.active" id="selectedDate"></div>
+                        <h4 class="mt-3">Chọn giờ</h4>
+                    <div class="hours list-group-item.active" id="selectedHour"></div>
+                        <button class="btn btn-secondary btn-prev mt-3">Quay lại</button>
+                        <button class="btn btn-primary btn-next mt-3" disabled>Tiếp theo</button>
+                    </div>
+                    <div class="step" id="step-5">
+                        <h4>Nhập thông tin</h4>
+                        <div class="row">
+                            <div class="col-6">
+                            <input type="text" class="form-control" id="fullName" placeholder="Họ và tên">
+                            <input type="text" class="form-control mt-2" id="phoneNumber" placeholder="Số điện thoại">
+                            </div>
+                            <div class="col-6">
+                                <input type="text" class="form-control" id="email" placeholder="Email">
+                            <textarea class="form-control mt-2" name="" id="notes" cols="10" rows="20" placeholder="ghi chú">
+                            ghi chú
+                        </textarea>
+                            </div>
+                        </div>
+                        <button class="btn btn-secondary btn-prev mt-3">Quay lại</button>
+                        <button class="btn btn-success btn-finish mt-3">Hoàn tất</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#step-1 .location-item").click(function () {
+            $("#step-1 .location-item").removeClass("active"); // Xóa active khỏi các địa điểm khác
+            $(this).addClass("active"); // Đánh dấu địa điểm được chọn
+
+            let locationId = $(this).data("value"); // Lấy ID của địa điểm
+            console.log("✅ Địa điểm được chọn có ID:", locationId);
+
+            $("#selectedLocationId").val(locationId); // Lưu ID vào input ẩn
+        });
+        $("#step-2 .list-group-item").click(function () {
+            $("#step-2 .list-group-item").removeClass("active"); // Xóa active khỏi các dịch vụ khác
+            $(this).addClass("active"); // Đánh dấu dịch vụ được chọn
+
+            let serviceId = $(this).data("value"); // Lấy ID của dịch vụ
+            console.log("✅ Dịch vụ được chọn có ID:", serviceId);
+
+            $("#selectedServiceId").val(serviceId); // Lưu ID vào input ẩn
+        });
+    });
+
+
+</script>
+<script>
+    $(document).ready(function () {
+        let currentStep = 1;
+        let selectedDate = null;
+        let selectedHour = null;
+
+        function showStep(step) {
+            $(".step").removeClass("active");
+            $("#step-" + step).addClass("active");
+
+            $(".step-progress").removeClass("active completed");
+            $(".step-progress").each(function () {
+                let stepIndex = $(this).data("step");
+                if (stepIndex < step) {
+                    $(this).addClass("completed");
+                } else if (stepIndex === step) {
+                    $(this).addClass("active");
+                }
+            });
+
+            $(".btn-prev").toggle(step > 1);
+            $(".btn-next").toggle(step < 5);
+            $(".btn-finish").toggle(step === 5);
+        }
+
+        $(".list-group-item").click(function () {
+            $(this).siblings().removeClass("active");
+            $(this).addClass("active");
+            $(".btn-next").prop("disabled", false);
+        });
+
+        let today = new Date();
+        let calendar = $(".calendar");
+
+        for (let i = 0; i < 30; i++) {
+            let date = new Date();
+            date.setDate(today.getDate() + i);
+            let day = date.toISOString().split("T")[0];
+
+            let dayEl = $("<div>")
+                .text(day)
+                .addClass("date-item")
+                .click(function () {
+                    $(".date-item").removeClass("active");
+                    $(this).addClass("active");
+                    selectedDate = day;
+                    $("#selectedDate").text( selectedDate); 
+                    loadHours(day);
+                });
+
+            calendar.append(dayEl);
+        }
+
+        function loadHours(selectedDate) {
+            let hoursDiv = $(".hours").empty();
+            let workingHours = [
+                "08:00:00", "09:00:00", "10:00:00", "11:00:00", "12:00:00",
+                "13:00:00", "14:00:00", "15:00:00", "16:00:00", "17:00:00",
+                "18:00:00", "19:00:00", "20:00:00", "21:00:00", "22:00:00"
+            ];
+
+            workingHours.forEach(hour => {
+                let hourEl = $("<div>")
+                    .text(hour)
+                    .addClass("hour")
+                    .click(function () {
+                        $(".hour").removeClass("active");
+                        $(this).addClass("active");
+                        selectedHour = hour;
+                        $("#selectedHour").text( selectedHour); 
+                        checkDateTimeSelection();
+                    });
+
+                hoursDiv.append(hourEl);
+            });
+        }
+
+        function checkDateTimeSelection() {
+            if (selectedDate && selectedHour) {
+                $(".btn-next").prop("disabled", false);
+            } else {
+                $(".btn-next").prop("disabled", true);
+            }
+        }
+
+        $(".btn-next").click(function () {
+            if (currentStep === 4) {
+                if (!selectedDate || !selectedHour) {
+                    alert("⚠ Vui lòng chọn ngày và giờ trước khi tiếp tục.");
+                    return;
+                }
+            }
+            currentStep++;
+            showStep(currentStep);
+            $(".btn-next").prop("disabled", true);
+        });
+
+        $(".btn-prev").click(function () {
+            currentStep--;
+            showStep(currentStep);
+            $(".btn-next").prop("disabled", false);
+        });
+
+        showStep(1);
+    });
+
+</script>
+
+<script>
+    $(".btn-finish").click(function () {
+        let fullName = $("#fullName").val().trim();
+        let email = $("#email").val().trim();
+        let phoneNumber = $("#phoneNumber").val().trim();
+        let locationId = $("#selectedLocationId").val(); // Lấy từ input ẩn
+        // let amount = $("#amount").text().trim();
+        let notes = $("#notes").val().trim();
+        let selectedDate = $("#selectedDate").text().trim();
+        let selectedHour = $("#selectedHour").text().trim();
+        let serviceId = $("#selectedServiceId").val(); // Lấy từ input ẩn
+
+        
+        // console.log("🆔 Location ID:", locationId);
+        // console.log("🆔 Service ID:", serviceId);
+        // console.log(fullName);
+        // console.log(email);
+        // console.log(phoneNumber);
+        // console.log(amount);
+        // console.log(notes);
+        // console.log(selectedDate);
+        // console.log(selectedHour);
+
+        if (!fullName || !email || !phoneNumber || !locationId || !serviceId  || !selectedDate || !selectedHour) {
+            alert("❌ Vui lòng điền đầy đủ thông tin!");
+            return;
+        }
+
+        let appointmentData = {
+            User: {
+                FullName: fullName,
+                Email: email,
+                PhoneNumber: phoneNumber
+            },
+            LocationId: parseInt(locationId),
+            SlotDate: selectedDate,
+            SlotTime: selectedHour,
+            ServiceId: parseInt(serviceId),
+            // Amount: parseFloat(amount),
+            Notes: notes
+        };
+
+
+        console.log("📤 Dữ liệu gửi đi:", appointmentData);
+
+        $.ajax({
+            url: "/Appointment/CreateAppointment",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(appointmentData),
+            success: function (response) {
+                // console.log("✅ Phản hồi từ server:", response);
+                // alert("✔ Đặt lịch thành công! Mã lịch hẹn: " + response.AppointmentId);
+                window.location.href = "/Appointment/Appointment";
+            },
+            error: function (xhr) {
+                console.error("❌ Lỗi:", xhr);
+                alert("Lỗi: " + xhr.responseText);
+            }
+        });
+    });
+
+</script>
+
+

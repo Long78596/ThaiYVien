@@ -1,0 +1,22 @@
+   @keyframes waveText {
+                    0% {
+                        transform: translateY(0px);
+                    }
+
+                    50% {
+                        transform: translateY(-10px);
+                    }
+
+                    100% {
+                        transform: translateY(0px);
+                    }
+                }
+
+                .wave {
+                    display: inline-block;
+                    font-size: 32px;
+                    font-weight: bold;
+                    color: #ffc107;
+                    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+                    animation: waveText 1s infinite ease-in-out;
+                }

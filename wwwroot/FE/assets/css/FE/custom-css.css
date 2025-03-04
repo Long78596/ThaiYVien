@@ -1,0 +1,388 @@
+        :root {
+            --primary-color: #95131f;
+            --fs-color-primary: #95131f;
+            --fs-color-secondary: #502c1e;
+            --fs-color-success: #7a9c59;
+            --fs-color-alert: #b20000;
+            --fs-experimental-link-color: #95131f;
+            --fs-experimental-link-color-hover: #082e49;
+        }
+
+        .tooltipster-base {
+            --tooltip-color: #fff;
+            --tooltip-bg-color: #000;
+        }
+
+        .off-canvas-right .mfp-content,
+        .off-canvas-left .mfp-content {
+            --drawer-width: 300px;
+        }
+
+        .off-canvas .mfp-content.off-canvas-cart {
+            --drawer-width: 360px;
+        }
+
+        .container-width,
+        .full-width .ubermenu-nav,
+        .container,
+        .row {
+            max-width: 1230px
+        }
+
+        .row.row-collapse {
+            max-width: 1200px
+        }
+
+        .row.row-small {
+            max-width: 1222.5px
+        }
+
+        .row.row-large {
+            max-width: 1260px
+        }
+
+        .header-main {
+            height: 150px
+        }
+
+        #logo img {
+            max-height: 150px
+        }
+
+        #logo {
+            width: 166px;
+        }
+
+        #logo img {
+            padding: 6px 0;
+        }
+
+        .header-bottom {
+            min-height: 43px
+        }
+
+        .header-top {
+            min-height: 30px
+        }
+
+        .transparent .header-main {
+            height: 30px
+        }
+
+        .transparent #logo img {
+            max-height: 30px
+        }
+
+        .has-transparent+.page-title:first-of-type,
+        .has-transparent+#main>.page-title,
+        .has-transparent+#main>div>.page-title,
+        .has-transparent+#main .page-header-wrapper:first-of-type .page-title {
+            padding-top: 110px;
+        }
+
+        .header.show-on-scroll,
+        .stuck .header-main {
+            height: 70px !important
+        }
+
+        .stuck #logo img {
+            max-height: 70px !important
+        }
+
+        .search-form {
+            width: 70%;
+        }
+
+        .header-bg-color {
+            background-color: rgba(255, 255, 255, 0)
+        }
+
+        .header-bg-image {
+            background-image: url('https://nhatlieuyvien.b-cdn.net/wp-content/uploads/2023/06/footer_bg.png');
+        }
+
+        .header-bg-image {
+            background-repeat: repeat;
+        }
+
+        .header-bottom {
+            background-color: #424242
+        }
+
+        .top-bar-nav>li>a {
+            line-height: 16px
+        }
+
+        .header-main .nav>li>a {
+            line-height: 16px
+        }
+
+        .stuck .header-main .nav>li>a {
+            line-height: 50px
+        }
+
+        .header-bottom-nav>li>a {
+            line-height: 31px
+        }
+
+        @media (max-width: 549px) {
+            .header-main {
+                height: 70px
+            }
+
+            #logo img {
+                max-height: 70px
+            }
+        }
+
+        body {
+            color: #636363
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .heading-font {
+            color: #95131f;
+        }
+
+        body {
+            font-size: 100%;
+        }
+
+        @media screen and (max-width: 549px) {
+            body {
+                font-size: 100%;
+            }
+        }
+
+        body {
+            font-family: "Open Sans", sans-serif;
+        }
+
+        body {
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .nav>li>a {
+            font-family: Lato, sans-serif;
+        }
+
+        .mobile-sidebar-levels-2 .nav>li>ul>li>a {
+            font-family: Lato, sans-serif;
+        }
+
+        .nav>li>a,
+        .mobile-sidebar-levels-2 .nav>li>ul>li>a {
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .heading-font,
+        .off-canvas-center .nav-sidebar.nav-vertical>li>a {
+            font-family: "Open Sans", sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .heading-font,
+        .banner h1,
+        .banner h2 {
+            font-weight: 800;
+            font-style: normal;
+        }
+
+        .alt-font {
+            font-family: "Dancing Script", sans-serif;
+        }
+
+        .alt-font {
+            font-weight: 400 !important;
+            font-style: normal !important;
+        }
+
+        .pswp__bg,
+        .mfp-bg.mfp-ready {
+            background-color: #120202
+        }
+
+        @media screen and (min-width: 550px) {
+            .products .box-vertical .box-image {
+                min-width: 300px !important;
+                width: 300px !important;
+            }
+        }
+
+        .nav-vertical-fly-out>li+li {
+            border-top-width: 1px;
+            border-top-style: solid;
+        }
+
+        /* Custom CSS */
+        #content li {
+            margin-inline-start: 40px;
+        }
+
+        h2 {
+            color: #981C1F !important;
+        }
+
+        h3 {
+            color: #981C1F !important;
+        }
+
+        .form-tu-van .nf-form-cont {
+            background-color: 981C1F !important
+        }
+
+        .panel-send-question h3.block-title {
+            background-color: #992022 !important
+        }
+
+        .contact-icon {
+            background: #992022 !important
+        }
+
+        #mega-menu-wrap-primary #mega-menu-primary>li.mega-menu-flyout ul.mega-sub-menu {
+            width: 346px !important
+        }
+
+        .lieutrinh h3 {
+            color: #fff1c1 !important;
+        }
+
+        div.icon-box-left:hover {
+            background-color: #951d1f;
+            color: #fff;
+        }
+
+        div.icon-box-left:hover h2 {
+            color: #fff !important;
+        }
+
+        #panel-158569698 {
+            display: none;
+        }
+
+        .button-custom .flickity-prev-next-button.previous {
+            left: -7% !important;
+        }
+
+        .button-custom .flickity-prev-next-button.next {
+            left: 107% !important;
+        }
+
+        .hover h4:hover {
+            font-size: 120%;
+        }
+
+        .learndash-wrapper .ld-table-list .ld-table-list-header {
+            color: #000000 !important
+        }
+
+        .learndash-wrapper .ld-expand-button .ld-text {
+            display: none;
+        }
+
+        .wp-classic-menu-block {
+            background-color: #e6e6e6;
+            padding: 5px;
+            margin-bottom: 5px;
+        }
+
+        .wp-embed-site-title {
+            display: none
+        }
+
+        .hotro,
+        .uuthe:hover {
+            background-color: #e6e5d7;
+        }
+
+        .hotro:hover,
+        .uuthe {
+            background-color: #9a1d21;
+        }
+
+        .hotro:hover h3 {
+            color: #fafce7 !important;
+        }
+
+        .uuthe:hover p {
+            color: #95131f !important;
+        }
+
+        .lienhe_trangchu input {
+            background-color: #d0c2a7 !important;
+            border-radius: 12px !important;
+        }
+
+        input[type=text]:focus {
+            color: #aa292d !important;
+            font-weight: bold;
+        }
+
+        .chuvang span {
+            color: #edead5;
+        }
+
+        .viendo {
+            border: 3px solid #95131f;
+            padding-right: 25px;
+        }
+
+        .lienhe_trangchu .nf-form-content {
+            text-align: center;
+        }
+
+        #nf-field-36 {
+            background-color: white !important;
+            color: #95131f;
+            padding: 5px 70px;
+        }
+
+        #menu-item-9108 {
+            display: none;
+        }
+
+        .plyr__progress__container {
+            display: none;
+        }
+
+        plyr__controls__item plyr__control {
+            display: none;
+        }
+
+        .flickity-page-dots {
+            bottom: 0px !important;
+        }
+
+        .label-new.menu-item>a:after {
+            content: "New";
+        }
+
+        .label-hot.menu-item>a:after {
+            content: "Hot";
+        }
+
+        .label-sale.menu-item>a:after {
+            content: "Sale";
+        }
+
+        .label-popular.menu-item>a:after {
+            content: "Popular";
+        }
