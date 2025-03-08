@@ -1,0 +1,27 @@
+﻿@model TreatmentProcessesModel
+@{
+    ViewData["Title"] = "Thêm liệu trình";
+}
+
+<h2>Thêm liệu trình</h2>
+
+<form asp-action="Create">
+    <div class="form-group">
+        <label>Service</label>
+        <select asp-for="ServiceId" class="form-control">
+            @foreach (var service in ViewBag.Services)
+            {
+                <option value="@service.ID">@service.Title</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Step Number</label>
+        <input asp-for="StepNumber" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Description</label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+    </div>
+    <button type="submit" class="btn btn-success">Lưu</button>
+</form>

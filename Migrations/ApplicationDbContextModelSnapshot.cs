@@ -244,7 +244,6 @@ namespace ThaiYVien.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<decimal?>("Amount")
-                        .IsRequired()
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<bool>("Cancelled")
@@ -288,6 +287,23 @@ namespace ThaiYVien.Migrations
                     b.ToTable("Appointments");
                 });
 
+            modelBuilder.Entity("ThaiYVien.Models.CategoryServiceModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CategoryServices");
+                });
+
             modelBuilder.Entity("ThaiYVien.Models.LocationModel", b =>
                 {
                     b.Property<int>("Id")
@@ -320,12 +336,16 @@ namespace ThaiYVien.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
+                    b.Property<int?>("CategoryServiceId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Duration")
-                        .HasColumnType("int");
+                    b.Property<string>("Duration")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
@@ -333,6 +353,9 @@ namespace ThaiYVien.Migrations
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("SpecialOffer")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<byte>("Status")
                         .HasColumnType("tinyint");
@@ -346,7 +369,33 @@ namespace ThaiYVien.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("CategoryServiceId");
+
                     b.ToTable("Services");
+                });
+
+            modelBuilder.Entity("ThaiYVien.Models.TreatmentProcessesModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ServiceId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StepNumber")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ServiceId");
+
+                    b.ToTable("TreatmentProcesses");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -419,6 +468,24 @@ namespace ThaiYVien.Migrations
                     b.Navigation("Service");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ThaiYVien.Models.ServiceModel", b =>
+                {
+                    b.HasOne("ThaiYVien.Models.CategoryServiceModel", "CategoryService")
+                        .WithMany()
+                        .HasForeignKey("CategoryServiceId");
+
+                    b.Navigation("CategoryService");
+                });
+
+            modelBuilder.Entity("ThaiYVien.Models.TreatmentProcessesModel", b =>
+                {
+                    b.HasOne("ThaiYVien.Models.ServiceModel", "Service")
+                        .WithMany()
+                        .HasForeignKey("ServiceId");
+
+                    b.Navigation("Service");
                 });
 
             modelBuilder.Entity("ThaiYVien.Models.AppUserModel", b =>

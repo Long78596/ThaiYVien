@@ -39,6 +39,7 @@
 							<th >Thời gian trị liệu</th>
 							<th >Loại hình trị liệu</th>
 							<th>Quy Trình trị liệu</th>
+							<th> Thên Quy Trình trị liệu</th>
 							<th>Hình ảnh</th>
 							<th >Hành động</th>
 						</tr>
@@ -72,7 +73,8 @@
 									@statusText
 								</td>
 								<td >@item.Description</td>
-								<td><img  src="/image/service/@item.ImageUrl" style="height:50px;"/></td>
+								<td><img src="/image/service/@item.ImageUrl" style="height:50px;" /></td>
+								<td><a asp-action="Create" asp-controller="TreatmentProcess">Thêm</a></td>
 								<td >
 									<div class="d-flex order-actions">
 										<a asp-action="Edit" asp-controller="Service" asp-route-id="@item.ID" class=""><i class='bx bxs-edit'></i></a>

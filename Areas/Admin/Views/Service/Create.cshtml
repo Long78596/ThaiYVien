@@ -41,7 +41,14 @@
                             <span asp-validation-for="Description" class="text-danger" />
                         </div>
                       
+                        <div class="form-group mt-2">
+                            <label class="form-label">Danh mục</label>
+                            <select asp-for="CategoryServiceId" class="form-control" asp-items="ViewBag.Category">
+                                <option>--Chọn danh mục</option>
 
+                            </select>
+                            <span asp-validation-for="CategoryServiceId" class="text-danger" />
+                        </div>
 
                     
                         <div class="form-group mt-2">

@@ -1,0 +1,77 @@
+﻿@model List<ThaiYVien.Data.Dto.Appointment.AppointmentDto>
+
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h5>Thông tin lịch hẹn</h5>
+        </div>
+
+
+        <div class="table-responsive mt-3">
+            <table class="table table-bordered">
+                <thead class="table-light">
+                    <tr>
+                        <th>Mã lịch hẹn</th>
+                        <th>Tên khách hàng</th>
+                        <th>Số điện thoại</th>
+                        <th>Thời gian lịch hẹn</th>
+                        <th>Tên Dịch vụ</th>
+                        <th>Gía dịch vụ</th>
+                        <th>Thanh toán</th>
+                        <th>Trạng thái</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.UserName</td>
+                            <td>@item.PhoneNumber</td>
+                            <td>@item.SlotDate.ToString("dd/MM/yyyy") @item.SlotTime</td>
+                            <td>@string.Format(new System.Globalization.CultureInfo("vi-VN"), "{0:N0} đ", item.Amount) </td>
+
+
+                            <td>@item.ServiceName</td>
+                            <td>
+
+                                @if (item.Payment == true)
+                                {
+                                    <span>Đã thanh toán</span>
+                                }
+                                else
+                                {
+                                    <span>Chưa thanh toán</span>
+
+                                }
+                            </td>
+                            <td>
+
+                                @if (item.IsCompleted == true)
+                                {
+                                    <span class="text-success">Đã thành công</span>
+                                }
+                                else
+                                {
+                                    <span class="text-danger">Đang xử lý</span>
+
+                                }
+                            </td>
+                            <td>
+                                @if (item.Cancelled == false)
+                                {
+                                    <a asp-action="CancelAppointment" asp-controller="Appointment" asp-route-Id="@item.Id" class="btn btn-danger btn-sm">Hủy</a>
+                                }
+                                else
+                                {
+                                    <span class="text-warning">Hủy lịch hẹn </span>
+                                }
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>

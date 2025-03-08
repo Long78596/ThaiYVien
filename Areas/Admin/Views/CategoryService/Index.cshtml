@@ -1,0 +1,57 @@
+﻿@model IEnumerable<CategoryServiceModel>
+<main>
+    <div class="container-fluid px-4">
+        <h3>Danh Sách danh mục</h3>
+
+
+        <div class="card mb-4">
+
+
+
+
+            <div class="card-body">
+                <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
+                    <div class="card">
+                        <h3><a asp-action="Create" asp-controller="CategoryService" class="btn btn-primary">Thêm mới</a></h3>
+                    </div>
+
+                    <div class="datatable-container">
+                        <table id="myTable" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th data-sortable="true">
+                                        #
+                                    <th data-sortable="true">
+                                        Tên Danh mục
+                                    </th>
+                                    <th data-sortable="true">
+                                        Slug Danh mục
+                                    <th data-sortable="true">Mô tả</th>
+                                    <th data-sortable="true">Trạng Thái</th>
+                                    <th data-sortable="true">Manager</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr data-index="0">
+                                        <td class="text-center align-middle">@item.Id</td>
+                                        <td class="text-center align-middle">@item.Name</td>
+
+
+                                        <td>
+                                            <a class="btn btn-warning" asp-action="Edit" asp-controller="CategoryService" asp-route-Id="@item.Id">Edit</a>
+                                            <a class="btn btn-danger" asp-action="Delete" asp-controller="CategoryService" asp-route-Id="@item.Id">Delete</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

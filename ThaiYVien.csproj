@@ -39,4 +39,22 @@
     <Folder Include="wwwroot\image\service\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="Areas\Admin\Views\Appointment\Index.cshtml" />
+    <None Include="Areas\Admin\Views\CategoryService\Create.cshtml" />
+    <None Include="Areas\Admin\Views\CategoryService\Edit.cshtml" />
+    <None Include="Areas\Admin\Views\CategoryService\Index.cshtml" />
+    <None Include="Views\Account\ChangePassword.cshtml" />
+    <None Include="Views\Account\Create.cshtml" />
+    <None Include="Views\Account\ForgetPass.cshtml" />
+    <None Include="Views\Account\Index.cshtml" />
+    <None Include="Views\Account\Login.cshtml" />
+    <None Include="Views\Account\NewPass.cshtml" />
+    <None Include="Views\Appointment\Appointment.cshtml" />
+    <None Include="Views\Appointment\HistoryAppointment.cshtml" />
+    <None Include="Views\Appointment\Index.cshtml" />
+    <None Include="Views\Service\Index.cshtml" />
+    <None Include="Views\Shared\Components\CategoryService\Default.cshtml" />
+  </ItemGroup>
+
 </Project>

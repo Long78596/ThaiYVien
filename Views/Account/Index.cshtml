@@ -1,0 +1,100 @@
+﻿
+
+@model  ThaiYVien.Data.Dto.User.UpdateUserDto
+
+<style>
+
+
+    .profile-card {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+
+    .profile-img {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 3px solid white;
+    }
+</style>
+
+
+
+<div class="container mt-5">
+    <div class="row">
+        <!-- Thông tin cá nhân bên trái -->
+        <div class="col-lg-4 col-md-5 col-12 mb-3">
+            <div class="profile-card text-center p-3">
+                <img src="~/BE/assets/images/avatars/avatar-1.png" alt="Avatar" class="profile-img img-fluid">
+                <h3 class="mt-2">@Model.FullName</h3>
+                <div class="btn-group-custom">
+                    <button class="btn btn-primary btn-sm w-100 d-md-inline-block">Follow</button>
+                    <button class="btn btn-outline-primary btn-sm w-100 d-md-inline-block">Message</button>
+                </div>
+                <hr>
+                <p><i class="bi bi-globe"></i> <a href="#">https://codervent.com</a></p>
+                <p><i class="bi bi-facebook"></i> <a href="#">codervent</a></p>
+            </div>
+        </div>
+
+        <!-- Form cập nhật thông tin bên phải -->
+        <div class="col-lg-8 col-md-7 col-12">
+            <div class="profile-card">
+                <h4 class="mb-3">Thông tin cá nhân</h4>
+                <form asp-action="UpdateInfoAccount" asp-controller="Account" method="post">
+                     <input type="hidden" asp-for="Id" />
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="mb-3">
+                        <label class="form-label">Họ và tên</label>
+                        <input asp-for="FullName" class="form-control">
+                        <span asp-validation-for="FullName" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Tên tài khoản</label>
+                        <input asp-for="Username" class="form-control">
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input asp-for="Email" class="form-control">
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Số điện thoại</label>
+                        <input asp-for="PhoneNumber" class="form-control">
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Địa chỉ</label>
+                        <input asp-for="Address" class="form-control">
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                    <label class="form-label">giới tính</label>
+                   <select asp-for="Gender" class="form-select">
+    <option value="Nam">Nam</option>
+    <option value="Nữ">Nữ</option>
+    <option value="Khác">Khác</option>
+</select>
+<span asp-validation-for="Gender" class="text-danger"></span>
+                    <div class="mb-3">
+                        <label class="form-label">Mật khẩu mới</label>
+                        <input asp-for="NewPasssword" type="password" class="form-control">
+                          <span asp-validation-for="NewPasssword" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="btn btn-success w-100">Cập nhật</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+
+        }
+}

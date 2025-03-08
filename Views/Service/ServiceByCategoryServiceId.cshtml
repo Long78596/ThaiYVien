@@ -1,0 +1,78 @@
+﻿@model IEnumerable<ServiceModel>
+
+<main id="main" class="">
+
+
+    <div id="content" role="main" class="content-area">
+
+
+       
+        <div class="row" id="row-659985947">
+            <h1 style="text-align: center;" class="mt-5">
+                <span style="color: #800000;"><strong>HỆ THỐNG HỖ TRỢ CHĂM SÓC</strong></span>
+            </h1>
+            <p style="text-align: justify;">
+            </p>
+
+            @foreach (var item in Model)
+            {
+                <div id="col-2107808652" class="col medium-4 small-12 large-4">
+                    <div class="col-inner">
+
+
+                        <h4 style="text-align: center;"><a href="#">&nbsp;@item.Title</a></h4>
+                        <p style="text-align: justify;"> </p>
+                        <p style="text-align: justify;"> </p>
+                        <div class="box has-hover   has-hover box-text-bottom">
+
+                            <div class="box-image">
+                                <a asp-action="Detail" asp-controller="Service" asp-route-Id="@item.ID">
+                                    <div class="image-zoom">
+                                        <img width="2001px" height="2001px" src="~/image/service/@item.ImageUrl" style="height:150px;"
+                                             class="attachment- size-  rounded-circle" alt="" loading="lazy"
+                                             srcset="~/image/service/@item.ImageUrl 2001w"
+                                             sizes="(max-width: 2001px) 100vw, 2001px">
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="box-text text-left">
+                                <div class="box-text-inner">
+
+                                    <p style="text-align: justify;" style="font-size:20px;" class="text-dark">
+                                        @item.Description; …<a asp-action="Detail" asp-controller="Service" asp-route-Id="@item.ID">Xem thêm</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            }
+           
+
+
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+        <span class="cp-load-after-post"></span>
+
+
+    </div>
+
+
+
+</main>

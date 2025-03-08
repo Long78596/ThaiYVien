@@ -46,9 +46,9 @@
     <meta name="twitter:label2" content="Ước tính thời gian đọc" />
     <meta name="twitter:data2" content="10 phút" />
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-
-      <partial name="_CSSPARTIAL" />
+    <partial name="_CSSPARTIAL" />
 
     <style type="text/css">
         /** Mega Menu CSS: fs **/
@@ -194,16 +194,17 @@
         </defs>
     </svg>
     <a class="skip-link screen-reader-text" href="#main">Skip to content</a>
+    <partial name="_Notification" />
 
     <div id="wrapper">
-      
 
 
 
-       
 
-      
-       
+
+
+
+
 
 
         @await Html.PartialAsync("_HeaderPartial")
@@ -342,29 +343,38 @@
                     </a>
 
                 </li>
+
                 @if (User.Identity?.IsAuthenticated ?? false)
                 {
-                    <li class="account-item has-icon menu-item">
-                        <h2>@User.Identity.Name</h2>
+                    <li class="account-item has-icon dropdown">
+                        <div class="header-button">
+                            <a href="#" class="nav-top-link icon primary  dropdown-toggle no-arrow">
+                                <h2>@User.Identity.Name</h2>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" asp-action="Index" asp-controller="Account">Thông tin cá nhân</a></li>
+                                <li><a class="dropdown-item" asp-action="HistoryAppointment" asp-controller="Appointment">Lịch sử trị liệu</a></li>
+                                <li><a class="dropdown-item" asp-action="ChangePassword" asp-controller="Account">Đổi mật khẩu</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item text-danger" asp-action="Logout" asp-controller="Account">Đăng xuất</a></li>
+                            </ul>
+                        </div>
                     </li>
-                    <a asp-action="Logout" asp-controller="Account">
-                        <span class="header-account-title">
-                            Đăng xuất
-                        </span>
-                    </a>
                 }
                 else
                 {
-                      <li class="account-item has-icon menu-item">
-                    <a asp-action="Login" asp-controller="Account" class="nav-top-link nav-top-not-logged-in">
-                        <span class="header-account-title">
-                            Đăng nhập
-                        </span>
-                    </a>
+                    <li class="account-item has-icon menu-item">
+                        <a asp-action="Login" asp-controller="Account" class="nav-top-link nav-top-not-logged-in">
+                            <span class="header-account-title">
+                                Đăng nhập
+                            </span>
+                        </a>
 
-                </li>
+                    </li>
                 }
-              
+
                 <li class="html custom html_topbar_right">
                     <div id="panel-74667167" class="panel">
                         <div class="panel-inner">
@@ -384,7 +394,7 @@
                                     </div>
                                     <div class="icon-box-text last-reset">
                                         <h5 class="uppercase">Hotline</h5>
-                                        <h6>0968 824 386</h6>
+                                        <h6>0905.985.168</h6>
                                     </div>
                                 </div>
                             </a>
@@ -441,23 +451,19 @@
         })();
     </script>
     <!--End of Tawk.to Script-->
-    <div class="header-button">
-        <a href="#" class="nav-top-link nav-top-not-logged-in icon primary button circle is-small" id="user-icon">
-            User
-        </a>
-    </div>
+    
 
-  
+
 
     </main>
 
-   
+
     <div class="hotline-phone-ring-wrap">
         <div class="hotline-phone-ring facebook">
             <div class="hotline-phone-ring-circle"></div>
             <div class="hotline-phone-ring-circle-fill"></div>
             <div class="hotline-phone-ring-img-circle">
-                <a href="https://www.facebook.com/tapdoanytenhatlieuyvien/">
+                <a href="https://www.facebook.com/thaiyvienvietnam/">
                     <i class="icon-facebook"></i>
                 </a>
             </div>
@@ -470,7 +476,7 @@
             <div class="hotline-phone-ring-circle"></div>
             <div class="hotline-phone-ring-circle-fill"></div>
             <div class="hotline-phone-ring-img-circle">
-                <a href="https://www.youtube.com/channel/UCxjywOyGLs_Piu8mHb4AsDg">
+                <a href="#">
                     <i class="icon-youtube"></i>
                 </a>
             </div>
@@ -501,6 +507,9 @@
             document.body.className = c;
         })();
     </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="notyf.min.js"></script>
+
     <link rel='stylesheet' id='Booknetic-font-css'
           href='//fonts.googleapis.com/css?family=Poppins%3A200%2C200i%2C300%2C300i%2C400%2C400i%2C500%2C500i%2C600%2C600i%2C700&#038;display=swap&#038;ver=5.9.10'
           type='text/css' media='all' />
@@ -656,45 +665,24 @@
         var megamenu = { "timeout": "300", "interval": "100" };
         /* ]]> */
     </script>
+   
     <script type='text/javascript'
             src='https://nhatlieuyvien.b-cdn.net/wp-content/plugins/megamenu/js/maxmegamenu.js?ver=2.9.5'
             id='megamenu-js'></script>
     <script type='text/javascript'
             src='https://nhatlieuyvien.b-cdn.net/wp-content/plugins/megamenu-pro/assets/public.js?ver=2.2.3'
-            id='megamenu-pro-js'></script>
-    <script type='text/javascript' id='booknetic-js-extra'>
-        /* <![CDATA[ */
-        var BookneticData = { "ajax_url": "https:\/\/nhatlieuyvien.vn\/wp-admin\/admin-ajax.php", "assets_url": "https:\/\/nhatlieuyvien.vn\/wp-content\/plugins\/booknetic\/app\/Frontend\/assets\/", "date_format": "d-m-Y", "week_starts_on": "sunday", "client_time_zone": "off", "skip_extras_step_if_need": "on", "localization": { "January": "Th\u00e1ng M\u1ed9t", "February": "Th\u00e1ng Hai", "March": "Th\u00e1ng Ba", "April": "Th\u00e1ng T\u01b0", "May": "Th\u00e1ng N\u0103m", "June": "Th\u00e1ng S\u00e1u", "July": "Th\u00e1ng B\u1ea3y", "August": "Th\u00e1ng T\u00e1m", "September": "Th\u00e1ng Ch\u00edn", "October": "Th\u00e1ng M\u01b0\u1eddi", "November": "Th\u00e1ng M\u01b0\u1eddi M\u1ed9t", "December": "Th\u00e1ng M\u01b0\u1eddi Hai", "Mon": "Hai", "Tue": "Ba", "Wed": "T\u01b0", "Thu": "N\u0103m", "Fri": "S\u00e1u", "Sat": "B\u1ea3y", "Sun": "CN", "select": "Ch\u1ecdn...", "select_location": "H\u00e3y ch\u1ecdn \u0111\u1ecba \u0111i\u1ec3m.", "select_staff": "H\u00e3y ch\u1ecdn \u0111\u1ecba nh\u00e2n vi\u00ean.", "select_service": "H\u00e3y ch\u1ecdn \u0111\u1ecbch v\u1ee5", "select_week_days": "H\u00e3y ch\u1ecdn ng\u00e0y trong tu\u1ea7n", "date_time_is_wrong": "H\u00e3y ch\u1ecdn ng\u00e0y trong tu\u1ea7n v\u00e0 th\u1eddi gian ch\u00ednh x\u00e1c", "select_start_date": "H\u00e3y ch\u1ecdn ng\u00e0y b\u1eaft \u0111\u1ea7u", "select_end_date": "H\u00e3y ch\u1ecdn ng\u00e0y k\u1ebft th\u00fac", "select_date": "H\u00e3y ch\u1ecdn ng\u00e0y.", "select_time": "H\u00e3y ch\u1ecdn th\u1eddi gian", "select_available_time": "H\u00e3y ch\u1ecdn th\u1eddi gian c\u00f3 s\u1eb5n", "fill_all_required": "Vui l\u00f2ng \u0111i\u1ec1n t\u1ea5t c\u1ea3 c\u00e1c tr\u01b0\u1eddng b\u1eaft bu\u1ed9c ch\u00ednh x\u00e1c!", "email_is_not_valid": "Vui l\u00f2ng nh\u1eadp \u0111\u1ecba ch\u1ec9 email h\u1ee3p l\u1ec7!", "phone_is_not_valid": "Xin vui l\u00f2ng nh\u1eadp s\u1ed1 \u0111i\u1ec7n tho\u1ea1i h\u1ee3p l\u1ec7!", "Select date": "Ng\u00e0y l\u1ef1a ch\u1ecdn", "NEXT STEP": "Ti\u1ebfp theo", "CONFIRM BOOKING": "X\u00c1C NH\u1eacN \u0110\u1eb6T CH\u1ed6" }, "tenant_id": null };
-        /* ]]> */
-    </script>
-    <script type='text/javascript'
-            src='https://nhatlieuyvien.b-cdn.net/wp-content/plugins/booknetic/app/Frontend/assets/js/booknetic.js?v=2.3.267be7191bf19d&#038;ver=5.9.10'
-            id='booknetic-js'></script>
-    <script type='text/javascript'
-            src='https://nhatlieuyvien.b-cdn.net/wp-content/plugins/booknetic/app/Backend/Base/assets/js/select2.min.js?v=2.3.267be7191bf470&#038;ver=5.9.10'
-            id='select2-bkntc-js'></script>
-    <script type='text/javascript'
-            src='https://nhatlieuyvien.b-cdn.net/wp-content/plugins/booknetic/app/Frontend/assets/js/datepicker.min.js?v=2.3.267be7191bf4f2&#038;ver=5.9.10'
-            id='booknetic.datapicker-js'></script>
-    <script type='text/javascript'
-            src='https://nhatlieuyvien.b-cdn.net/wp-content/plugins/booknetic/app/Frontend/assets/js/jquery.nicescroll.min.js?v=2.3.267be7191bf55c&#038;ver=5.9.10'
-            id='jquery.nicescroll-js'></script>
-    <script type='text/javascript'
-            src='https://nhatlieuyvien.b-cdn.net/wp-content/plugins/booknetic/app/Frontend/assets/js/intlTelInput.min.js?v=2.3.267be7191bf5dc&#038;ver=5.9.10'
-            id='intlTelInput-js'></script>
-    <script type="text/javascript">
-        jQuery(window).on('load', function () {
-            jQuery('input[name="um_request"]').val('');
-        });
-    </script>
+            id='megamenu-pro-js'
+    
+    ></script>
 
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     @await Component.InvokeAsync("Notyf")
 
-    
-    @await RenderSectionAsync("Scripts", required: false)
 
+    @await RenderSectionAsync("Scripts", required: false)
+  
 
 </body>
 

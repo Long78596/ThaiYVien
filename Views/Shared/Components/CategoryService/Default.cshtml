@@ -1,0 +1,12 @@
+﻿@model IEnumerable<CategoryServiceModel>
+
+@foreach ( var item in Model)
+{
+    <li class='mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-949'
+        id='mega-menu-item-949'>
+        <a class="mega-menu-link"
+           asp-action="ServiceByCategoryServiceId" asp-controller="Service" asp-route-Id="@item.Id">
+            @item.Name
+        </a>
+    </li>
+}

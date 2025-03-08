@@ -1,0 +1,31 @@
+﻿@model IEnumerable<TreatmentProcessesModel>
+@{
+    ViewData["Title"] = "Danh sách liệu trình";
+}
+
+<h2>Danh sách liệu trình</h2>
+<a asp-action="Create" class="btn btn-primary">Thêm Mới</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Service</th>
+            <th>Step Number</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>Name</td>
+                <td>@item.StepNumber</td>
+                <td>@item.Description</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Sửa</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

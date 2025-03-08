@@ -1,0 +1,123 @@
+﻿@model ThaiYVien.Models.ViewModel.ServiceDetailViewModel
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<div class="main" style="background-image: url(/FE/assets/img/home_bg.png);">
+    <div class="container ">
+        <h2 class="text-center text-uppercase">@Model.Name</h2>
+        <p class="text-muted text-center"><b style="font-size:23px;" class="text-dark">Thời gian: @Model.Duration | Giá: @Model.Price.ToString("N0") VNĐ</b></p>
+        <h3 class="mt-4">Đối tượng</h3>
+        <p class="lead" style="font-size:23px;" class="text-dark">@Model.Description</p>
+
+        <!-- Hình ảnh banner -->
+        <img src="~/image/service/@Model.ImgUrl" style="width:60%" class="img-fluid mb-4" alt="Banner">
+
+        <!-- Quy trình trị liệu -->
+        <h3 class="mt-4">Quy trình trị liệu</h3>
+        <ul class="list-group">
+            @foreach (var step in Model.TreatmentProcesses)
+            {
+                <li class="list-group-item"><strong>Bước @step.StepNumber:</strong> @step.Description</li>
+            }
+        </ul>
+
+        <!-- Đối tượng sử dụng -->
+        <h3 class="mt-4">Đối tượng khuyến cáo sử dụng</h3>
+        <ul style="font-size:23px;" class="text-dark">
+            @Model.Description
+        </ul>
+        <div class="container mt-4">
+            <h3 class="text-center">Trung tâm viện dưỡng Sinh và chăm sóc sức khỏe Thái Y Viện </h3>
+            <p style="font-size:23px;" class="text-dark"><strong>Địa chỉ:</strong> Số 182 đường Lê Thạch, Tp.Đà Nẵng</p>
+            <p style="font-size:23px;" class="text-dark"><strong>Hotline/Zalo:</strong> 0905.985.168 - Nguyễn Thị Trang</p>
+        </div>
+
+
+        <!-- Nút đặt lịch -->
+        <button class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#bookingModal">Đặt lịch ngay</button>
+    </div>
+
+</div>
+<div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Đặt lịch hẹn</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               
+                    <input type="hidden" id="ServiceId" value="@Model.ID" />
+                    <div class="mb-3">
+                        <label class="form-label">Họ và tên</label>
+                        <input type="text" class="form-control" id="FullName" required />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" id="Email" required />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Số điện thoại</label>
+                        <input type="text" class="form-control" id="PhoneNumber" required />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Ngày hẹn</label>
+                        <input type="date" class="form-control" id="SlotDate" required />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Giờ hẹn</label>
+                        <input type="time" class="form-control" id="SlotTime" required />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Ghi chú</label>
+                        <textarea class="form-control" id="Notes"></textarea>
+                    </div>
+                <button id="submitAppointment" class="btn btn-success">Xác nhận đặt lịch</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).on("click", "#submitAppointment", function () {
+        console.log("Nút xác nhận đặt lịch đã được bấm!");
+    });
+
+</script>
+@* <script>
+    $(document).ready(function () {
+        $("#submitAppointment").click(function () {
+            var appointmentData = {
+                ServiceId: $("#ServiceId").val(),
+                User: {
+                    FullName: $("#FullName").val(),
+                    Email: $("#Email").val(),
+                    PhoneNumber: $("#PhoneNumber").val()
+                },
+                SlotDate: $("#SlotDate").val(),
+                SlotTime: $("#SlotTime").val(),
+                Notes: $("#Notes").val()
+            };
+
+            $.ajax({
+                url: "/Appointment/CreateAppointment",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(appointmentData),
+                success: function (response) {
+                    alert(response.Message);
+                    $("#bookingModal").modal("hide");
+                    location.reload();
+                },
+                error: function (xhr) {
+                    alert("Đặt lịch thất bại: " + (xhr.responseJSON?.Message || "Lỗi không xác định"));
+                }
+            });
+        });
+    });
+</script> *@
+
+

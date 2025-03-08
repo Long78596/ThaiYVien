@@ -10,7 +10,9 @@ namespace ThaiYVien.Data
         {
 
         }
+        public DbSet<CategoryServiceModel> CategoryServices { get; set; }
         public DbSet<ServiceModel> Services { get; set; }
+        public DbSet<TreatmentProcessesModel> TreatmentProcesses { get; set; }
         public DbSet<LocationModel> Locations { get; set; }
         public DbSet<AppointmentModel> Appointments { get; set; }
 

@@ -25,15 +25,17 @@ namespace ThaiYVien.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-           
+            ViewBag.Category = new SelectList(_dataContext.CategoryServices, "Id", "Name");
+
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ServiceModel service)
         {
+            ViewBag.Category = new SelectList(_dataContext.CategoryServices, "Id", "Name", service.CategoryServiceId);
 
-            
+
             var check_name = await _dataContext.Services.FirstOrDefaultAsync(p => p.Title == service.Title);
             if (check_name != null)
             {
@@ -67,6 +69,8 @@ namespace ThaiYVien.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int Id)
         {
+            ViewBag.Category = new SelectList(_dataContext.CategoryServices, "Id", "Name");
+
             ServiceModel service = await _dataContext.Services.FindAsync(Id);
             return View(service);
 
@@ -75,7 +79,7 @@ namespace ThaiYVien.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(ServiceModel service)
         {
-
+            ViewBag.Category = new SelectList(_dataContext.CategoryServices, "Id", "Name");
 
             if (service.ID == null)
             {
@@ -114,6 +118,7 @@ namespace ThaiYVien.Areas.Admin.Controllers
             //exists_food.Video = monan.Video;
             exists_service.TreatmentDate =service.TreatmentDate;
             exists_service.Status = service.Status;
+            exists_service.CategoryServiceId = service.CategoryServiceId;
 
             _dataContext.Update(exists_service);
             await _dataContext.SaveChangesAsync();

@@ -24,32 +24,27 @@ namespace ThaiYVien
         {
             var builder = WebApplication.CreateBuilder(args);
             var builderRazer = builder.Services.AddRazorPages();
-			builder.Services.AddNotyf(config =>
-			{
-				config.DurationInSeconds = 5;
-				config.IsDismissable = true;
-				config.Position = NotyfPosition.TopRight;
-			}
-);
 
-			builder.Services.AddControllersWithViews();
+
+
+            builder.Services.AddControllersWithViews();
 
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectDB")));
             builder.Services.AddScoped<IEmailSender, EmailSender>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<IAccountService, AccountService>();
-            builder.Services.AddScoped<IUserService,UserService>();
+            builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<IUserAdminRepository, UserAdminRepository>();
-            builder.Services.AddScoped<IUserAdminService,UserAdminService>();
-			builder.Services.AddScoped<IRoleRepository, RoleRepository>();
-			builder.Services.AddScoped<IRoleService, RoleService>();
+            builder.Services.AddScoped<IUserAdminService, UserAdminService>();
+            builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+            builder.Services.AddScoped<IRoleService, RoleService>();
 
 
-			
 
 
-			builder.Services.AddIdentity<AppUserModel, IdentityRole>()
+
+            builder.Services.AddIdentity<AppUserModel, IdentityRole>()
           .AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
 
@@ -73,27 +68,54 @@ namespace ThaiYVien
                 //"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
                 //options.User.RequireUniqueEmail = false;
             });
-			builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
-
-			builder.Services.AddAuthentication(options =>
+            builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
+            builder.Services.AddNotyf(config =>
             {
+                config.DurationInSeconds = 5;
+                config.IsDismissable = true;
+                config.Position = NotyfPosition.TopRight;
+            });
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30); // Thời gian Session tồn tại
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+                options.Cookie.SecurePolicy = CookieSecurePolicy.Always; // Chỉ gửi cookie qua HTTPS
+                options.Cookie.SameSite = SameSiteMode.None; // Cấu hình SameSite cho cookie
+            });
+
+
+            builder.Services.AddAuthentication(options =>
+            {
+
                 //options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                 //options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                //options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                //options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+            })
+ .AddCookie()
+.AddGoogle(options =>
+{
+    options.ClientId = builder.Configuration["GoogleKeys:ClientId"];
+    options.ClientSecret = builder.Configuration["GoogleKeys:ClientSecret"];
+    options.CallbackPath = "/auth/callback";
+    options.SaveTokens = true;
+    options.UsePkce = true;
 
-            }).AddCookie().AddGoogle(GoogleDefaults.AuthenticationScheme, options =>
-            {
-                options.ClientId = builder.Configuration.GetSection("GoogleKeys:ClientId").Value;
-                options.ClientSecret = builder.Configuration.GetSection("GoogleKeys:ClientSecret").Value;
+})
 
-            });
-			builder.Services.AddAuthentication().AddFacebook(opt =>
-			{
-				opt.ClientId = "";
-				opt.ClientSecret = "";
-			});
 
-			var app = builder.Build();
+    .AddFacebook(options =>
+    {
+        options.AppId = builder.Configuration["FacebookKeys:AppId"];
+        options.AppSecret = builder.Configuration["FacebookKeys:AppSecret"];
+        options.CallbackPath = new PathString("/signin-facebook"); // Đường dẫn callback từ Facebook
+    });
+
+            Console.WriteLine($"Google ClientId: {builder.Configuration["GoogleKeys:ClientId"]}");
+            Console.WriteLine($"Google ClientSecret: {builder.Configuration["GoogleKeys:ClientSecret"]}");
+
+
+            var app = builder.Build();
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
@@ -104,20 +126,21 @@ namespace ThaiYVien
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            
 
+            app.UseSession();
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-            app.UseNotyf();
+
+     
             app.MapControllerRoute(
            name: "Areas",
           pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}");
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
-           
+                pattern: "{controller=Account}/{action=Login}/{id?}");
+
 
             app.Run();
         }
