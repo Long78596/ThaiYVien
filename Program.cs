@@ -97,7 +97,7 @@ namespace ThaiYVien
 {
     options.ClientId = builder.Configuration["GoogleKeys:ClientId"];
     options.ClientSecret = builder.Configuration["GoogleKeys:ClientSecret"];
-    options.CallbackPath = "/auth/callback";
+    options.CallbackPath = "/signin-google";
     options.SaveTokens = true;
     options.UsePkce = true;
 

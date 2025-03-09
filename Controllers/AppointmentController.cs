@@ -9,6 +9,7 @@ using ThaiYVien.Data.Dto.Appointment;
 using System.Security.Claims;
 using ThaiYVien.Data.Dto.User;
 using Microsoft.AspNetCore.Identity;
+using System.Globalization;
 
 namespace ThaiYVien.Controllers
 {
@@ -27,14 +28,20 @@ namespace ThaiYVien.Controllers
         {
             ViewBag.Locations = await _context.Locations.ToListAsync();
 
-            ViewBag.Services1 = await _context.Services.Where(cb => cb.Status == 0).ToListAsync();
-            ViewBag.Services2 = await _context.Services.Where(cb => cb.Status == 1).ToListAsync();
-            ViewBag.Services3 = await _context.Services.Where(cb => cb.Status == 2).ToListAsync();
-            ViewBag.Services4 = await _context.Services.Where(cb => cb.Status == 3).ToListAsync();
+
+            var categories = await _context.CategoryServices.ToListAsync();
+
+            var servicesByCategory = await _context.Services
+                .Where(s => s.CategoryServiceId.HasValue) // Bỏ các dịch vụ có CategoryId NULL
+                .GroupBy(s => s.CategoryServiceId.Value) // Chuyển CategoryId? => int
+                .ToDictionaryAsync(g => g.Key, g => g.ToList());
+
+            //return Json(new { categories, servicesByCategory });
             ViewBag.Employees = await _context.Users
                 .Where(u => u.RoleId == "27300127-bd78-4ec4-a648-9051ca099ebc")
                 .ToListAsync();
-
+            ViewBag.Categories = categories;
+            ViewBag.ServicesByCategory = servicesByCategory;
             return View();
         }
         [HttpGet]
@@ -114,6 +121,7 @@ namespace ThaiYVien.Controllers
             {
                 return BadRequest(new { Message = "Service not found" });
             }
+            
 
 
             var appointment = new AppointmentModel

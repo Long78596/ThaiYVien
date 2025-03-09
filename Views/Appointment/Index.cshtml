@@ -56,6 +56,12 @@
                 background-color: #ddd;
                 cursor: not-allowed;
             }
+
+    .service-list {
+        max-height: 300px;
+        overflow-y: auto;
+        padding: 5px;
+    }
     </style>
     <div class="container1">
         <h2 class="text-center">Đặt Lịch Hẹn</h2>
@@ -94,116 +100,50 @@
                         </div>
                         <button class="btn btn-primary btn-next mt-3" disabled>Tiếp theo</button>
                 </div>
-                
+
                 <div class="step" id="step-2">
                     <h4 class="card-header bg-primary text-white text-center fw-bold">Chọn dịch vụ</h4>
-                    <div class="container ">
-                        <!-- Liệu trình trị liệu Lưu thông lý thuyết -->
-                        <h5 class="text-primary">Liệu trình trị liệu Lưu thông lý thuyết</h5>
-                        <div class="row">
-                            @if (ViewBag.Services1 != null && ViewBag.Services1.Count > 0)
+                    <div class="container service-list">
+                        @if (ViewBag.Categories != null && ViewBag.ServicesByCategory != null)
+                        {
+                            @foreach (var category in ViewBag.Categories)
                             {
-                                @foreach (var service1 in ViewBag.Services1)
-                                {
-                                    <div class="col-12 mb-3">
-                                        <div class="list-group-item d-flex flex-column align-items-center text-center" data-value="@service1.ID">
-                                            <input type="hidden" id="selectedServiceId" name="serviceId">
-                                            <img src="~/image/service/@service1.ImageUrl" class="rounded-circle" style="height:75px;" alt="">
-                                            <p><b>@service1.Title</b></p>
-                                            <p><span id="amount">@(@service1.Price?.ToString("N0") ?? "0") đ</span> -- @service1.Duration phút</p>
+                                <h5 class="text-primary">@category.Name</h5>
+                                <div class="row server">
+                                    @if (ViewBag.ServicesByCategory.ContainsKey(category.Id) && ViewBag.ServicesByCategory[category.Id].Count > 0)
+                                    {
+                                        @foreach (var service in ViewBag.ServicesByCategory[category.Id])
+                                        {
+                                            <div class="col-12 mb-3">
+                                                <div class="list-group-item d-flex flex-column align-items-center text-center" data-value="@service.ID">
+                                                    <input type="hidden" id="selectedServiceId" name="serviceId">
+                                                    <img src="~/image/service/@service.ImageUrl" class="rounded-circle" style="height:75px;" alt="">
+                                                    <p><b>@service.Title</b></p>
+                                                    <p><span id="amount">@(@service.Price?.ToString("N0") ?? "0") đ</span> -- @service.Duration phút</p>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <div class="col-12">
+                                            <p class="text-danger"><b>Dịch vụ đang được cập nhật</b></p>
                                         </div>
-                                    </div>
-                                }
-                            }
-                            else
-                            {
-                                <div class="col-12">
-                                    <p class="text-danger"><b>Dịch vụ đang được cập nhật</b></p>
+                                    }
                                 </div>
                             }
-                        </div>
-
-                        <!-- Liệu trình trị liệu đào thải hàn độc -->
-                        <h5 class="text-primary mt-3">Liệu trình trị liệu đào thải hàn độc</h5>
-                        <div class="row">
-                            @if (ViewBag.Services2 != null && ViewBag.Services2.Count > 0)
-                            {
-                                @foreach (var service2 in ViewBag.Services2)
-                                {
-                                    <div class="col-12 mb-3">
-                                        <div class="list-group-item d-flex flex-column align-items-center text-center" data-value="@service2.ID">
-                                            <input type="hidden" id="selectedServiceId" name="serviceId">
-                                            <img src="~/image/service/@service2.ImageUrl" class="rounded-circle" style="height:75px;" alt="">
-                                            <p><b>@service2.Title</b></p>
-                                            <p><small><span id="amount">@(@service2.Price?.ToString("N0") ?? "0") đ</span> -- @service2.Duration phút</small></p>
-                                        </div>
-                                    </div>
-                                }
-                            }
-                            else
-                            {
-                                <div class="col-12">
-                                    <p class="text-danger"><b>Dịch vụ đang được cập nhật</b></p>
-                                </div>
-                            }
-                        </div>
-
-                        <!-- Liệu trình trị liệu xương khớp -->
-                        <h5 class="text-primary mt-3">Liệu trình trị liệu xương khớp</h5>
-                        <div class="row">
-                            @if (ViewBag.Services3 != null && ViewBag.Services3.Count > 0)
-                            {
-                                @foreach (var service3 in ViewBag.Services3)
-                                {
-                                    <div class="col-12 mb-3">
-                                        <div class="list-group-item d-flex flex-column align-items-center text-center" data-value="@service3.ID">
-                                            <input type="hidden" id="selectedServiceId" name="serviceId">
-                                            <img src="~/image/service/@service3.ImageUrl" class="rounded-circle" style="height:75px;" alt="">
-                                            <p><b>@service3.Title</b></p>
-                                            <p><span id="amount">@(@service3.Price?.ToString("N0") ?? "0") đ</span> -- @service3.Duration phút</p>
-                                        </div>
-                                    </div>
-                                }
-                            }
-                            else
-                            {
-                                <div class="col-12">
-                                    <p class="text-danger"><b>Dịch vụ đang được cập nhật</b></p>
-                                </div>
-                            }
-                        </div>
-
-                        <!-- Liệu trình trị liệu giải độc -->
-                        <h5 class="text-primary mt-3">Liệu trình trị liệu giải độc</h5>
-                        <div class="row">
-                            @if (ViewBag.Services4 != null && ViewBag.Services4.Count > 0)
-                            {
-                                @foreach (var service4 in ViewBag.Services4)
-                                {
-                                    <div class="col-12 mb-3">
-                                        <div class="list-group-item d-flex flex-column align-items-center text-center" data-value="@service4.ID">
-                                            <input type="hidden" id="selectedServiceId" name="serviceId">
-                                            <img src="~/image/service/@service4.ImageUrl" class="rounded-circle" style="height:75px;" alt="">
-                                            <p><b>@service4.Title</b></p>
-                                            <p><span id="amount">@(@service4.Price?.ToString("N0") ?? "0") đ</span> -- @service4.Duration phút</p>
-                                        </div>
-                                    </div>
-                                }
-                            }
-                            else
-                            {
-                                <div class="col-12">
-                                    <p class="text-danger"><b>Dịch vụ đang được cập nhật</b></p>
-                                </div>
-                            }
-                        </div>
-
+                        }
+                        else
+                        {
+                            <p class="text-danger"><b>Không có danh mục hoặc dịch vụ nào.</b></p>
+                        }
                     </div>
 
                     <!-- Nút điều hướng -->
                     <button class="btn btn-secondary btn-prev mt-3">Quay lại</button>
                     <button class="btn btn-primary btn-next mt-3" disabled>Tiếp theo</button>
                 </div>
+
 
                     <div class="step" id="step-3">
                         <h4>Chọn nhân viên</h4>
@@ -248,7 +188,9 @@
 
 
     </div>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+<!-- Toastr JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script>
     $(document).ready(function () {
         $("#step-1 .location-item").click(function () {
@@ -409,10 +351,30 @@
         // console.log(selectedDate);
         // console.log(selectedHour);
 
-        if (!fullName || !email || !phoneNumber || !locationId || !serviceId  || !selectedDate || !selectedHour) {
-            alert("❌ Vui lòng điền đầy đủ thông tin!");
+
+       
+        if (!fullName) {
+            toastr.error("Vui lòng nhập họ và tên.");
             return;
         }
+        if (!email) {
+            toastr.error("Vui lòng nhập email.");
+            return;
+        }
+        var now = new Date();
+        var today = now.toISOString().split("T")[0];
+
+        if (!selectedDate || selectedDate < today) {
+            toastr.error("Ngày hẹn phải từ hôm nay trở đi.");
+            return;
+        }
+
+        var phoneRegex = /^0\d{9}$/;
+        if (!phoneRegex.test(phoneNumber)) {
+            toastr.error("Số điện thoại không hợp lệ! Phải bắt đầu bằng 0 và có đúng 10 chữ số.");
+            return;
+        }
+
 
         let appointmentData = {
             User: {

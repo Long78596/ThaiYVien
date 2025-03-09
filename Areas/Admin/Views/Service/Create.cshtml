@@ -10,12 +10,12 @@
     <div class="row">
         <div class="col-md-6 col-12 mx-auto">
             <form asp-action="Create" asp-controller="Service" method="post" enctype="multipart/form-data">
-            <div class="card mt-5">
-                <div class="card-header mt-2">
-                    <h3>Thêm mới dịch vụ trị liệu</h3>
-                </div>
-                <div class="card-body">
-                   
+                <div class="card mt-5">
+                    <div class="card-header mt-2">
+                        <h3>Thêm mới dịch vụ trị liệu</h3>
+                    </div>
+                    <div class="card-body">
+
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="form-group mt-2">
                             <label class="form-label">Tên Dịch vụ</label>
@@ -34,13 +34,18 @@
                             <input asp-for="Duration" class="form-control" />
                             <span asp-validation-for="Duration" class="text-danger" />
                         </div>
-                     
+                        <div class="form-group mt-2">
+                            <label class="form-label">chương trình khuyến mãi</label>
+                            <input asp-for="SpecialOffer" class="form-control" />
+                            <span asp-validation-for="SpecialOffer" class="text-danger" />
+                        </div>
+
                         <div class="form-group mt-2">
                             <label class="form-label">Mô tả</label>
                             <textarea asp-for="Description" class="form-control"></textarea>
                             <span asp-validation-for="Description" class="text-danger" />
                         </div>
-                      
+
                         <div class="form-group mt-2">
                             <label class="form-label">Danh mục</label>
                             <select asp-for="CategoryServiceId" class="form-control" asp-items="ViewBag.Category">
@@ -50,7 +55,7 @@
                             <span asp-validation-for="CategoryServiceId" class="text-danger" />
                         </div>
 
-                    
+
                         <div class="form-group mt-2">
                             <label asp-for="ImageUpload" class="form-label">Hình ảnh</label>
                             <input asp-for="ImageUpload" type="file" class="form-control" />
@@ -68,34 +73,34 @@
                             </select>
                             <span asp-validation-for="Status" class="text-danger" />
                         </div>
-                      
 
-                       
-                   
-                    
-                </div>
-                <div class="card-footer">
-                   <div class="row">
-                       <div class="col">
+
+
+
+
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col">
                                 <div class="form-group mt-2">
                                     <button class="btn btn-primary">Xác nhận</button>
 
                                 </div>
-                                
 
-                       </div>
-                       <div class="col">
+
+                            </div>
+                            <div class="col">
                                 <div class="form-group mt-2 text-end">
                                     <a asp-action="Index" asp-controller="Service`" class="btn btn-primary"><i class="fa-solid fa-arrow-left"></i>Danh sách trị liệu</a>
 
                                 </div>
 
-                       </div>
+                            </div>
 
-                   </div>
+                        </div>
 
+                    </div>
                 </div>
-            </div>
             </form>
 
         </div>
